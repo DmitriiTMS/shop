@@ -1,0 +1,10 @@
+.favorite {
+  display: inline-block;
+  border-radius: 16px;
+  height: 48px;
+  transition: all 0.3s ease;
+}
+
+.favorite:hover {
+  box-shadow: 0 0 8px rgb(149, 146, 146);
+}

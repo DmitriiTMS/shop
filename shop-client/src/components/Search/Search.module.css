@@ -1,0 +1,31 @@
+.search {
+    position: relative;
+    max-width: 310px;
+}
+
+.searchInput {
+    min-width: 310px;
+    padding: 12px 40px 12px 14px;
+    border-radius: 16px;
+    border: 1px solid rgba(225, 225, 225, 1);
+    font-size: 18px;
+    color: rgb(45, 44, 44);
+}
+
+.searchInput:focus {
+    outline: none;
+    border: 1px solid rgb(149, 146, 146);
+    box-shadow: 0 0 8px rgb(149, 146, 146);
+    transition: all 0.2s ease;
+}
+
+.searchInput::placeholder {
+    font-size: 16px;
+    color: rgba(107, 107, 107, 1);
+}
+
+.searchImg {
+    position: absolute;
+    top: 12px;
+    right: 15px;
+}

@@ -1,0 +1,22 @@
+.basket {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 130px;
+    padding: 12px;
+    border-radius: 16px;
+    background-color: rgba(255, 0, 0, 1);
+    text-decoration: none;
+    transition: all .3s ease;
+}
+
+.basket:hover {
+    background-color: rgb(244, 105, 105);
+   
+}
+
+.basketText {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 1);
+}
+

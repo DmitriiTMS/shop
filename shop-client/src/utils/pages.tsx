@@ -13,6 +13,12 @@ export const MainPage = lazy(() =>
     }))
   );
 
+  export const BreadAndPastriesPages = lazy(() =>
+    import("../pages/breadAndPastries-page/breadAndPastries-page").then((module) => ({
+      default: module.BreadAndPastriesPages,
+    }))
+  );
+
   export const NotFoundPage = lazy(() =>
     import("../pages/not-found-page/not-found").then((module) => ({
       default: module.NotFoundPage,

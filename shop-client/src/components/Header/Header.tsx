@@ -1,0 +1,27 @@
+
+import { Account } from "../Account/Account"
+import { Basket } from "../Basket/Basket"
+import { Favorite } from "../Favorite/Favorite"
+import { Logo } from "../Logo/Logo"
+import { NavigationPage } from "../NavigationPage/NavigationPage"
+import { Search } from "../Search/Search"
+
+import styles from './Header.module.css';
+
+export const Header = () => {
+
+    return (
+        <header className={styles.header}>
+            <div className={styles.headerBlock}>
+                <Logo />
+                <Search />
+                <div className={styles.headerLinkUser}>
+                    <Favorite />
+                    <Account />
+                    <Basket />
+                </div>
+            </div>
+            <NavigationPage />
+        </header>
+    )
+} 
