@@ -1,0 +1,10 @@
+.footer {
+    background-color: rgb(250, 47, 47);
+    padding: 20px 0;
+}
+
+.navigation {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}

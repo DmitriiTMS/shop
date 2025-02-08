@@ -1,3 +1,7 @@
 export const BreadAndPastriesPages = () => {
-    return "breadAndPastries-page"
+    return (
+        <div className="container">
+            "BreadAndPastriesPages"
+        </div>
+    )
 }

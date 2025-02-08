@@ -1,6 +1,6 @@
 import { Suspense } from "react"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import { BreadAndPastriesPages, Layout, MainPage, NotFoundPage } from "./utils/pages"
+import { BreadAndPastriesPages, ConfectioneryPage, Layout, MainPage, NotFoundPage } from "./utils/pages"
 
 
 export const App = () => {
@@ -13,6 +13,7 @@ export const App = () => {
           <Route path="/" element={<Layout />}>
             <Route index element={<MainPage />} />
             <Route path="/breadandpastries" element={<BreadAndPastriesPages />} />
+            <Route path="/confectionery" element={<ConfectioneryPage />} />
           </Route>
 
           <Route path="*" element={<NotFoundPage />} />

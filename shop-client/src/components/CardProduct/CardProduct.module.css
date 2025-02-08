@@ -1,0 +1,26 @@
+.cardProduct {
+  border: 1px solid black;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all .3s ease-in;
+}
+
+.cardProduct:hover {
+  transform: translateY(-10px)
+}
+
+
+.prodImg {
+  display: block;
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+  object-position: center;
+  background-color: #fff;
+  margin-bottom: 6px;
+}
+
+.prodTitle {
+    margin-bottom: 10px;
+}

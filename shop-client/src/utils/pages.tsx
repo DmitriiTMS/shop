@@ -19,6 +19,12 @@ export const MainPage = lazy(() =>
     }))
   );
 
+  export const ConfectioneryPage = lazy(() =>
+    import("../pages/confectionery-page/confectionery-page").then((module) => ({
+      default: module.ConfectioneryPage,
+    }))
+  );
+
   export const NotFoundPage = lazy(() =>
     import("../pages/not-found-page/not-found").then((module) => ({
       default: module.NotFoundPage,
