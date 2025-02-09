@@ -14,10 +14,13 @@ export const CardProduct: React.FC<ICardProduct> = ({ title, category, brand, pr
     return (
         <div className={styles.cardProduct}>
             <img className={styles.prodImg} src={imgUrl} alt={title} />
-            <h3 className={styles.prodTitle}>{title}</h3>
-            <p>{category}</p>
-            <p>{brand}</p>
-            <p>{price} бел.руб</p>
+            <div className={styles.prodInfo}>
+                <h3 className={styles.prodTitle}>Название: {title}</h3>
+                <p>Категория: {category}</p>
+                <p>Бренд: {brand}</p>
+                <p>Цена: {price} бел.руб</p>
+            </div>
+
         </div>
     )
 }

@@ -1,20 +1,25 @@
 import { CardProduct } from '../../components/CardProduct/CardProduct';
 import styles from './main-page.module.css'
-import {  useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
+import { Search } from '../../components/Search/Search';
 
 export const MainPage = () => {
 
-    const { filteredProducts }= useSelector((state: RootState) => state.products)
-    
+    const { products } = useSelector((state: RootState) => state.products)
+
     return (
         <section className={styles.bread}>
             <div className="container">
                 <h2 className={styles.breadBlockTitle}>Все продукты</h2>
+                <div className={styles.search}> 
+                    <Search />
+                </div>
+
                 <div className={styles.breadBlock}>
 
                     {
-                        filteredProducts.length > 0 ? filteredProducts.map((prod) => {
+                        products.length > 0 ? products.map((prod) => {
                             return (
                                 <CardProduct key={prod.id} {...prod} />
                             )

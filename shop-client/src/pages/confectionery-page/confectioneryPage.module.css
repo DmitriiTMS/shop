@@ -1,0 +1,9 @@
+.confectionerySection {
+    padding: 80px 0;
+}
+
+.confectioneryBlock {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(228px, 1fr));
+    gap: 26px;
+}

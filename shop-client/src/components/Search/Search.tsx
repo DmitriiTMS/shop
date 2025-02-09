@@ -1,8 +1,8 @@
 import { useDispatch } from 'react-redux';
-import search from '../../assets/images/header/search.svg'
-
-import styles from './Search.module.css';
 import { filterProducts } from '../../store/slices/productSlice';
+
+import search from '../../assets/images/header/search.svg'
+import styles from './Search.module.css';
 
 export const Search = () => {
     const dispatch = useDispatch();

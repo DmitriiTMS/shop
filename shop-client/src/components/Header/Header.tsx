@@ -4,7 +4,6 @@ import { Basket } from "../Basket/Basket"
 import { Favorite } from "../Favorite/Favorite"
 import { Logo } from "../Logo/Logo"
 import { Navigation } from "../Navigation/Navigation"
-import { Search } from "../Search/Search"
 
 import styles from './Header.module.css';
 
@@ -15,7 +14,6 @@ export const Header = () => {
             <div className="container">
                 <div className={styles.headerBlock}>
                     <Logo />
-                    <Search />
                     <div className={styles.headerLinkUser}>
                         <Favorite />
                         <Account />

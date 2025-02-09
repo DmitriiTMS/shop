@@ -1,13 +1,17 @@
 .cardProduct {
-  border: 1px solid black;
+  max-width: 228px;
+  border: 1px solid rgb(148, 147, 147);
   border-radius: 10px;
   overflow: hidden;
   cursor: pointer;
+  box-shadow: 1px 1px 3px 3px rgb(148, 147, 147);
   transition: all .3s ease-in;
 }
 
 .cardProduct:hover {
-  transform: translateY(-10px)
+  transform: translateY(-10px);
+  box-shadow: 1px 1px 3px 3px rgb(242, 111, 111);
+  border: 1px solid rgb(242, 111, 111);
 }
 
 
@@ -23,4 +27,8 @@
 
 .prodTitle {
     margin-bottom: 10px;
+}
+
+.prodInfo {
+  padding: 8px;
 }

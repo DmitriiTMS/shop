@@ -4,12 +4,10 @@ import { IProduct, PRODUCTS } from '../../mockData/products'
 
 interface ProductsState {
     products: IProduct[];
-    filteredProducts: IProduct[];
 }
 
 const initialState: ProductsState = {
     products: PRODUCTS,
-    filteredProducts: PRODUCTS,
 };
 
 
@@ -18,11 +16,11 @@ export const productsSlice = createSlice({
     initialState,
     reducers: {
         filterProducts: (state, action: PayloadAction<string>) => {
-            const searchQuery = action.payload.toLowerCase();
+            const searchQuery = action.payload.toLowerCase().trim();
             if (searchQuery === '') {
-                state.filteredProducts = state.products;
+                state.products = [...PRODUCTS];
             } else {
-                state.filteredProducts = state.products.filter((product) =>
+                state.products = PRODUCTS.filter((product) =>
                     product.title.toLowerCase().includes(searchQuery) ||
                     product.brand.toLowerCase().includes(searchQuery) ||
                     product.category.toLowerCase().includes(searchQuery)
@@ -34,6 +32,4 @@ export const productsSlice = createSlice({
 
 
 export const { filterProducts } = productsSlice.actions;
-
-
 export default productsSlice.reducer;
