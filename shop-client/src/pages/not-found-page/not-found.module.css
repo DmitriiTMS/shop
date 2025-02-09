@@ -1,0 +1,51 @@
+.notFoundBlock {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.notFoundBlockTitle {
+    font-weight: 700;
+    font-size: 72px;
+    color: rgba(190, 190, 190, 1);
+    text-transform: lowercase;
+}
+
+.notFoundBlockNumbers {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.notFoundBlockNumber  {
+    font-weight: 700;
+    font-size: 240px;
+    color: rgba(190, 190, 190, 1);
+    text-transform: lowercase;
+}
+
+.notFoundBlockText {
+    color: rgba(107, 107, 107, 1);
+    font-size: 20px;
+    max-width: 642px;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+.notFoundBlockLink {
+    display: inline-block;
+    padding: 10px;
+    border-radius: 16px;
+    border: 2px solid rgba(255, 0, 0, 1);
+    color: rgba(255, 0, 0, 1);
+    font-size: 16px;
+    text-decoration: none;
+    transition: all .3s ease;
+}
+
+.notFoundBlockLink:hover {
+    background-color: rgba(255, 0, 0, 1);
+    color: #fff;
+}
+
