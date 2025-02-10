@@ -25,7 +25,7 @@ export const CardProduct: React.FC<ICardProduct> = ({
   const dispatch = useDispatch();
   const { favoriteProducts } = useSelector((state: RootState) => state.productsSlice);
   const isFavorite = favoriteProducts.some(product => product.id === id);
-
+  
   const toggleFavorite = () => {
     const prod = { id, title, category, brand, price, imgUrl }
     if (isFavorite) {
@@ -39,7 +39,6 @@ export const CardProduct: React.FC<ICardProduct> = ({
     <div className={styles.cardProduct}>
       <img className={styles.prodImg} src={imgUrl} alt={title} />
       <div>
-
         <svg
           onClick={toggleFavorite}
           fill={isFavorite ? "red" : "#000000"}

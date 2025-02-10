@@ -25,6 +25,11 @@ export const MainPage = lazy(() =>
     }))
   );
 
+  export const FavoritePage = lazy(() =>
+    import("../pages/favorite-page/favorite-page").then((module) => ({
+      default: module.FavoritePage,
+    }))
+  );
   export const NotFoundPage = lazy(() =>
     import("../pages/not-found-page/not-found").then((module) => ({
       default: module.NotFoundPage,

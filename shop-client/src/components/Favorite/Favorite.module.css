@@ -1,3 +1,8 @@
+.favoriteBlock {
+  position: relative;
+}
+
+
 .favorite {
   display: inline-block;
   border-radius: 16px;
@@ -7,4 +12,28 @@
 
 .favorite:hover {
   box-shadow: 0 0 8px rgb(149, 146, 146);
+}
+
+.favoriteCount {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  padding: 6px;
+  width: 23px;
+  height: 23px;
+  border-radius: 100%;
+  background-color: rgb(69, 66, 66);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.favoriteCount span {
+  color: #fff;
+}
+
+.favoriteHeart {
+  width: 50px;
+  height: 50px;
 }

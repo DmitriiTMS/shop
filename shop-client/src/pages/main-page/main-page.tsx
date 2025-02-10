@@ -6,7 +6,7 @@ import { Search } from '../../components/Search/Search';
 
 export const MainPage = () => {
 
-    const { products } = useSelector((state: RootState) => state.productsSlice)
+    const { products } = useSelector((state: RootState) => state.productsSlice)    
 
     return (
         <section className={styles.bread}>

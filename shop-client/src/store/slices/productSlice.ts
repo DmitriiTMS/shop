@@ -5,8 +5,6 @@ import { IProduct, PRODUCTS } from '../../mockData/products'
 interface ProductsState {
     products: IProduct[];
     favoriteProducts: IProduct[];
-
-
 }
 
 const initialState: ProductsState = {
@@ -31,12 +29,12 @@ export const productsSlice = createSlice({
                 );
             }
         },
-        addFavorite:(state, action) => {
+        addFavorite: (state, action) => {
             if (!state.favoriteProducts.some(prod => prod.id === action.payload.id)) {
                 state.favoriteProducts.push(action.payload);
             }
         },
-        removeFavorite:(state, action) => {
+        removeFavorite: (state, action) => {
             state.favoriteProducts = state.favoriteProducts.filter(
                 (prod) => prod.id !== action.payload.id
             );
