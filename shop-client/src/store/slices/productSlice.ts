@@ -4,10 +4,14 @@ import { IProduct, PRODUCTS } from '../../mockData/products'
 
 interface ProductsState {
     products: IProduct[];
+    favoriteProducts: IProduct[];
+
+
 }
 
 const initialState: ProductsState = {
     products: PRODUCTS,
+    favoriteProducts: []
 };
 
 
@@ -25,11 +29,21 @@ export const productsSlice = createSlice({
                     product.brand.toLowerCase().includes(searchQuery) ||
                     product.category.toLowerCase().includes(searchQuery)
                 );
-            } 
+            }
+        },
+        addFavorite:(state, action) => {
+            if (!state.favoriteProducts.some(prod => prod.id === action.payload.id)) {
+                state.favoriteProducts.push(action.payload);
+            }
+        },
+        removeFavorite:(state, action) => {
+            state.favoriteProducts = state.favoriteProducts.filter(
+                (prod) => prod.id !== action.payload.id
+            );
         },
     },
 });
 
 
-export const { filterProducts } = productsSlice.actions;
+export const { filterProducts, addFavorite, removeFavorite } = productsSlice.actions;
 export default productsSlice.reducer;

@@ -8,7 +8,7 @@ import styles from "./confectioneryPage.module.css";
 
 export const ConfectioneryPage = () => {
 
-    const { products } = useSelector((state: RootState) => state.products);
+    const { products } = useSelector((state: RootState) => state.productsSlice);
 
     const confectioneryProducts = useMemo(() => 
         products.filter((prod: IProduct) => prod.category === "пирожное"), 

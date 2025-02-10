@@ -8,7 +8,7 @@ import styles from "./breadAndPastriesPages.module.css";
 
 export const BreadAndPastriesPages = () => {
 
-    const { products } = useSelector((state: RootState) => state.products);
+    const { products } = useSelector((state: RootState) => state.productsSlice);
 
     const breadProducts = useMemo(() => 
         products.filter((prod: IProduct) => prod.category === "хлеб"), 
