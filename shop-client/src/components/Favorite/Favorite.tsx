@@ -8,14 +8,14 @@ import favoriteActive from '../../assets/images/header/heart-active.svg'
 import styles from './Favorite.module.css';
 
 export const Favorite = () => {
-    const { favoriteProducts } = useSelector((state: RootState) => state.productsSlice);
+    const { favoriteProducts } = useSelector((state: RootState) => state.favoriteProductsSlice);
     return (
         <div className={styles.favoriteBlock}>
             <Link className={styles.favorite} to="/favorite">
-                <img className={styles.favoriteHeart} src={favoriteProducts.length > 0 ? favoriteActive : favorite} alt="favorite" />
+                <img className={styles.favoriteHeart} src={favoriteProducts && favoriteProducts.length > 0 ? favoriteActive : favorite} alt="favorite" />
             </Link>
             {
-                favoriteProducts.length > 0 && <div className={styles.favoriteCount}>
+                favoriteProducts && favoriteProducts.length > 0 && <div className={styles.favoriteCount}>
                     <span>{favoriteProducts.length}</span>
                 </div>
             }

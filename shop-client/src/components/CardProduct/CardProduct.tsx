@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./CardProduct.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/store";
-import { addFavorite, removeFavorite } from "../../store/slices/productSlice";
+import { addFavorite, removeFavorite } from "../../store/slices/favoriteProducts/favoriteProductsSlice";
 
 interface ICardProduct {
   id: number;
@@ -23,7 +23,7 @@ export const CardProduct: React.FC<ICardProduct> = ({
 }) => {
 
   const dispatch = useDispatch();
-  const { favoriteProducts } = useSelector((state: RootState) => state.productsSlice);
+  const { favoriteProducts } = useSelector((state: RootState) => state.favoriteProductsSlice);
   const isFavorite = favoriteProducts.some(product => product.id === id);
   
   const toggleFavorite = () => {
