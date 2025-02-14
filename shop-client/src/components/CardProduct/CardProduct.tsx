@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./CardProduct.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../store/store";
-import { addFavorite, removeFavorite } from "../../store/slices/favoriteProducts/favoriteProductsSlice";
+import { AppDispatch, RootState } from "../../store/store";
+import { addFavoriteProducts, deleteFavoriteProducts, } from "../../store/slices/favoriteProducts/favoriteProductsSlice";
 
 interface ICardProduct {
   id: number;
@@ -22,18 +22,18 @@ export const CardProduct: React.FC<ICardProduct> = ({
   imgUrl,
 }) => {
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const { favoriteProducts } = useSelector((state: RootState) => state.favoriteProductsSlice);
   const isFavorite = favoriteProducts.some(product => product.id === id);
-  
+
+
   const toggleFavorite = () => {
-    const prod = { id, title, category, brand, price, imgUrl }
     if (isFavorite) {
-      dispatch(removeFavorite({id}));
+      dispatch(deleteFavoriteProducts(id));
     } else {
-      dispatch(addFavorite(prod));
+      dispatch(addFavoriteProducts({ title, category, brand, price, imgUrl }))
     }
-  };  
+  };
 
   return (
     <div className={styles.cardProduct}>

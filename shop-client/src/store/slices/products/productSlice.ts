@@ -29,6 +29,7 @@ export const getAllProducts = createAsyncThunk(
         }
     },
 )
+
 export const searchProducts = createAsyncThunk(
     'products/searchProducts',
     async (params: SearchParams, thunkAPI) => {
