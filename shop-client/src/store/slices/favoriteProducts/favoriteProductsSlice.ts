@@ -30,9 +30,9 @@ export const getAllFavoriteProducts = createAsyncThunk(
 export const addFavoriteProducts = createAsyncThunk(
     'favoriteProducts/addFavoriteProducts',
     async (product: IProd, thunkAPI) => {
+        thunkAPI.dispatch(addFavorite(product))
         try {
             await axios.post('http://localhost:4200/favorites', product)
-            thunkAPI.dispatch(getAllFavoriteProducts())
         } catch (error) {
             if (axios.isAxiosError(error)) {                
                 return thunkAPI.rejectWithValue(error.response?.data || error.message);
@@ -48,8 +48,8 @@ export const deleteFavoriteProducts = createAsyncThunk(
     'favoriteProducts/deleteFavoriteProducts',
     async (id: number, thunkAPI) => {
         try {
+            thunkAPI.dispatch(removeFavorite(id))
             await axios.delete(`http://localhost:4200/favorites/${id}`)
-            thunkAPI.dispatch(getAllFavoriteProducts())
         } catch (error) {
             if (axios.isAxiosError(error)) {
                 return thunkAPI.rejectWithValue(error.response?.data || error.message);
@@ -78,7 +78,18 @@ const initialState: ProductsState = {
 export const favoriteProductsSlice = createSlice({
     name: 'favoriteProducts',
     initialState,
-    reducers: {},
+    reducers: { 
+        addFavorite:(state, action) => {
+            if (!state.favoriteProducts.some(prod => prod.id === action.payload.id)) {
+                state.favoriteProducts.push(action.payload);
+            }
+        },
+        removeFavorite:(state, action) => {
+            state.favoriteProducts = state.favoriteProducts.filter(
+                (prod) => prod.id !== action.payload
+            );
+        },
+    },
     extraReducers: (builder) => {
         builder
             // getAllFavoriteProducts
@@ -100,14 +111,11 @@ export const favoriteProductsSlice = createSlice({
                 state.error = action.payload as string;
             })
             // deleteFavoriteProducts
-            .addCase(deleteFavoriteProducts.pending, (state) => {
-                state.loading = true;
-                state.error = null;
-            })
             .addCase(deleteFavoriteProducts.rejected, (state, action) => {
                 state.error = action.payload as  string;
             })
     },
 });
 
+export const { removeFavorite, addFavorite } = favoriteProductsSlice.actions;
 export default favoriteProductsSlice.reducer;

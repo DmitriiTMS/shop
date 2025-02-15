@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import styles from "./CardProduct.module.css";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../store/store";
-import { addFavoriteProducts, deleteFavoriteProducts } from "../../store/slices/favoriteProducts/favoriteProductsSlice";
+import { Location } from "react-router-dom";
+
 
 interface ICardProduct {
   id: number;
@@ -11,43 +10,40 @@ interface ICardProduct {
   brand: string;
   price: number;
   imgUrl: string;
+  isFavorite: boolean;
+  localError: string | null;
+  toggleFavorite: () => void;
+  location?: Location
 }
 
 export const CardProduct: React.FC<ICardProduct> = ({
-  id,
   title,
   category,
   brand,
   price,
   imgUrl,
+  isFavorite,
+  localError,
+  toggleFavorite,
+  location
 }) => {
+  const safeLocation = location || { pathname: "" };
+  const [removing, setRemoving] = useState(false);
 
-  const dispatch = useDispatch<AppDispatch>();
-  const { favoriteProducts } = useSelector((state: RootState) => state.favoriteProductsSlice);
-  const isFavorite = favoriteProducts.some(product => product.id === id);
-
-  const [localError, setLocalError] = useState<string | null>(null);
-
-  const toggleFavorite = async () => {
-    setLocalError(null); // Сбрасываем ошибку перед новым запросом
-    try {
-      if (isFavorite) {
-        await dispatch(deleteFavoriteProducts(id)).unwrap();
-      } else {
-        await dispatch(addFavoriteProducts({ id, title, category, brand, price, imgUrl })).unwrap();
-      }
-    } catch (error) {
-      setLocalError(error as string); // Устанавливаем ошибку только для этой карточки
-    }
-  };
+  const handleRemove = () => {
+    setRemoving(true);
+    setTimeout(() => {
+        toggleFavorite(); // Удаляем после анимации
+    }, 300);
+};
 
   return (
-    <div className={styles.cardProduct}>
+    <div className={`${styles.cardProduct} ${removing ? styles.removing : ""}`}>
       {localError && <span>{isFavorite ? 'Не удалён из избранного (ошибка)' :'Не добавлен в избранное (ошибка)'}</span>}
       <img className={styles.prodImg} src={imgUrl} alt={title} />
       <div>
         <svg
-          onClick={toggleFavorite}
+          onClick={isFavorite && safeLocation.pathname === "/favorite" ? handleRemove : toggleFavorite}
           fill={isFavorite ? "red" : "#000000"}
           height="38px"
           width="38px"

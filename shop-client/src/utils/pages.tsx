@@ -30,6 +30,14 @@ export const MainPage = lazy(() =>
       default: module.FavoritePage,
     }))
   );
+
+  
+  export const CartPage = lazy(() =>
+    import("../pages/cart-page/cartPage").then((module) => ({
+      default: module.CartPage,
+    }))
+  );
+
   export const NotFoundPage = lazy(() =>
     import("../pages/not-found-page/not-found").then((module) => ({
       default: module.NotFoundPage,
