@@ -16,3 +16,7 @@
   margin: 0 auto;
   padding: 0 10px;
 }
+
+.react-loading-skeleton {
+  --base-color: #d3d0d3;
+}

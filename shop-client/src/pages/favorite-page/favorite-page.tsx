@@ -4,6 +4,7 @@ import { AppDispatch, RootState } from '../../store/store';
 import { CardProduct } from '../../components/CardProduct/CardProduct';
 import { useEffect } from 'react';
 import { getAllFavoriteProducts } from '../../store/slices/favoriteProducts/favoriteProductsSlice';
+import { LoaderProducts } from '../../components/LoaderProducts/LoaderProducts';
 
 export const FavoritePage = () => {
     const dispatch = useDispatch<AppDispatch>();
@@ -18,7 +19,7 @@ export const FavoritePage = () => {
             <div className="container">
                 <h2 className={styles.favoriteBlockTitle}>Избранные продукты</h2>
                 {
-                    loading ? <h1>Loading...</h1> :
+                    loading ? <LoaderProducts/> :
                         <>
                             <div className={styles.favoriteBlock}>
                                 {

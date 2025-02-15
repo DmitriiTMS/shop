@@ -6,6 +6,7 @@ import { CardProduct } from "../../components/CardProduct/CardProduct";
 
 import styles from "./confectioneryPage.module.css";
 import { getAllProducts } from '../../store/slices/products/productSlice';
+import { LoaderProducts } from '../../components/LoaderProducts/LoaderProducts';
 
 export const ConfectioneryPage = () => {
 
@@ -18,14 +19,14 @@ export const ConfectioneryPage = () => {
     );
 
     useEffect(() => {
-        dispatch(getAllProducts())
+        dispatch(getAllProducts({searchInput: ""}))
     }, [dispatch])
 
     return (
         <section className={styles.confectionerySection}>
             <div className="container">
                 {
-                    loading ? <h1>Loading...</h1> :
+                    loading ? <LoaderProducts/> :
                         <>
                             {error && <h1>{error}</h1>}
                             <div className={styles.confectioneryBlock}>

@@ -1,13 +1,14 @@
 import { Suspense } from "react"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { BreadAndPastriesPages, ConfectioneryPage, FavoritePage, Layout, MainPage, NotFoundPage } from "./utils/pages"
+import { Loader } from "./components/Loader/Loader"
 
 
 export const App = () => {
 
   return (
     <BrowserRouter>
-      <Suspense fallback="Loading...">
+      <Suspense fallback={<Loader/>}>
         <Routes>
 
           <Route path="/" element={<Layout />}>

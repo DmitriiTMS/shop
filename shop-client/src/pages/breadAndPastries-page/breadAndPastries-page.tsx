@@ -7,6 +7,7 @@ import { getAllProducts } from '../../store/slices/products/productSlice';
 
 
 import styles from "./breadAndPastriesPages.module.css";
+import { LoaderProducts } from '../../components/LoaderProducts/LoaderProducts';
 
 export const BreadAndPastriesPages = () => {
 
@@ -19,14 +20,14 @@ export const BreadAndPastriesPages = () => {
     );
 
     useEffect(() => {
-        dispatch(getAllProducts())
+        dispatch(getAllProducts({searchInput: ""}))
     }, [dispatch])
 
     return (
         <section className={styles.breadSection}>
             <div className="container">
                 {
-                    loading ? <h1>Loading...</h1> :
+                    loading ? <LoaderProducts/> :
                         <>
                         {error && <h1>{error}</h1>}
                             <div className={styles.breadBlock}>
