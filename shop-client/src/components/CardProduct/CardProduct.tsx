@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./CardProduct.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store/store";
-import { addFavoriteProducts, deleteFavoriteProducts, } from "../../store/slices/favoriteProducts/favoriteProductsSlice";
+import { addFavoriteProducts, deleteFavoriteProducts } from "../../store/slices/favoriteProducts/favoriteProductsSlice";
 
 interface ICardProduct {
   id: number;
@@ -26,17 +26,24 @@ export const CardProduct: React.FC<ICardProduct> = ({
   const { favoriteProducts } = useSelector((state: RootState) => state.favoriteProductsSlice);
   const isFavorite = favoriteProducts.some(product => product.id === id);
 
+  const [localError, setLocalError] = useState<string | null>(null);
 
-  const toggleFavorite = () => {
-    if (isFavorite) {
-      dispatch(deleteFavoriteProducts(id));
-    } else {
-      dispatch(addFavoriteProducts({ title, category, brand, price, imgUrl }))
+  const toggleFavorite = async () => {
+    setLocalError(null); // Сбрасываем ошибку перед новым запросом
+    try {
+      if (isFavorite) {
+        await dispatch(deleteFavoriteProducts(id)).unwrap();
+      } else {
+        await dispatch(addFavoriteProducts({ id, title, category, brand, price, imgUrl })).unwrap();
+      }
+    } catch (error) {
+      setLocalError(error as string); // Устанавливаем ошибку только для этой карточки
     }
   };
 
   return (
     <div className={styles.cardProduct}>
+      {localError && <span>{isFavorite ? 'Не удалён из избранного (ошибка)' :'Не добавлен в избранное (ошибка)'}</span>}
       <img className={styles.prodImg} src={imgUrl} alt={title} />
       <div>
         <svg

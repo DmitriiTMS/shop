@@ -1,0 +1,31 @@
+.sort {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 48px;
+}
+.sortButtons {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.sortButtons button {
+    padding: 4px;
+    border: 1px solid rgb(182, 186, 186);
+    background-color: rgb(135, 139, 139);
+    color: #fff;
+    border-radius: 6px;
+    cursor: pointer;
+    transition:  box-shadow .3s ease;
+}
+
+.sortButtons button:hover {
+    -webkit-box-shadow: 0px 0px 10px 4px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 10px 4px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 10px 4px rgba(0,0,0,0.75);
+}
+
+.sortButtons button.active {
+    background-color: rgb(250, 131, 77);
+}

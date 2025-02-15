@@ -1,29 +1,12 @@
 import search from '../../assets/images/header/search.svg'
 import styles from './Search.module.css';
-import { useEffect, useRef, useState } from 'react';
-import { AppDispatch} from '../../store/store';
-import { useDispatch } from 'react-redux';
-import { getAllProducts, searchProducts } from '../../store/slices/products/productSlice';
 
-export const Search = () => {
-    const dispatch = useDispatch<AppDispatch>();
-    const [searchInput, setSearchInput] = useState<string>("");
-    const isFirstRender = useRef(true);
+interface ISearch {
+    searchInput: string,
+    setSearchInput: (value: string) => void
+}
 
-    useEffect(() => {
-        if (isFirstRender.current) {
-            isFirstRender.current = false;
-            return;
-        }
-
-        if (searchInput.trim()) {
-            dispatch(searchProducts({ q: searchInput }));
-        } else {
-            dispatch(getAllProducts());
-        }
-    }, [searchInput, dispatch]);
-
-
+export const Search: React.FC<ISearch> = ({searchInput, setSearchInput}) => {
     return (
         <div className={styles.search} >
             <input

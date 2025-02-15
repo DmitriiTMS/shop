@@ -2,10 +2,9 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { IProduct } from '../../../mockData/products'
 import axios from 'axios'
 
-interface SearchParams {
-    q?: string;
-    // title?: string;
-    // category?: string;
+interface IParams {
+    searchInput?: string;
+    sort?: string;
 }
 
 interface ProductsState {
@@ -16,9 +15,13 @@ interface ProductsState {
 
 export const getAllProducts = createAsyncThunk(
     'products/getAllProducts',
-    async (_, thunkAPI) => {
+    async (params: IParams, thunkAPI) => {
+        const {searchInput = "", sort} = params;
+        
+        const paramSort = sort ? `_sort=price&_order=${sort}` : '';
+        
         try {
-            const response = await axios.get<IProduct[]>('http://localhost:4200/products')
+            const response = await axios.get<IProduct[]>(`http://localhost:4200/products?q=${searchInput}&${paramSort}`)
             return response.data
         } catch (error) {
             if (axios.isAxiosError(error)) {
@@ -30,23 +33,6 @@ export const getAllProducts = createAsyncThunk(
     },
 )
 
-export const searchProducts = createAsyncThunk(
-    'products/searchProducts',
-    async (params: SearchParams, thunkAPI) => {
-        try {
-            const response = await axios.get('http://localhost:4200/products', {
-                params,
-            });
-            return response.data;
-        } catch (error) {
-            if (axios.isAxiosError(error)) {
-                return thunkAPI.rejectWithValue(error.response?.data || error.message);
-            } else {
-                return thunkAPI.rejectWithValue('An unknown error occurred');
-            }
-        }
-    }
-);
 
 const initialState: ProductsState = {
     products: [],
@@ -73,19 +59,6 @@ export const productsSlice = createSlice({
                 state.loading = false;
                 state.error = action.payload as string;
             })
-            // searchProducts
-            .addCase(searchProducts.pending, (state) => {
-                state.loading = true;
-                state.error = null;
-            })
-            .addCase(searchProducts.fulfilled, (state, action) => {
-                state.loading = false;
-                state.products = action.payload;
-            })
-            .addCase(searchProducts.rejected, (state, action) => {
-                state.loading = false;
-                state.error = action.payload as string;
-            });
     },
 });
 
