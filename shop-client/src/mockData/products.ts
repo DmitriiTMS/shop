@@ -1,11 +1,11 @@
 export interface IProduct {
     id: number,
-        brand: string,
-        category: string,
-        title: string,
-        price: number,
-        imgUrl: string,
-        rating: number
+    brand: string,
+    category: string,
+    title: string,
+    price: number,
+    imgUrl: string,
+    rating: number
 }
 
 export const PRODUCTS: IProduct[] = [
@@ -86,7 +86,7 @@ export const PRODUCTS: IProduct[] = [
         rating: 3
     },
 
-    
+
     {
         id: 9,
         brand: "Знатны пачастунак",

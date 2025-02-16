@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { addFavoriteProducts, deleteFavoriteProducts, getAllFavoriteProducts} from '../../store/slices/favoriteProducts/favoriteProductsSlice';
 import { LoaderProducts } from '../../components/LoaderProducts/LoaderProducts';
 import { useLocation } from 'react-router-dom';
+import { useGetAllCartProducts } from '../../query/cart/useGetAllCartProducts';
 
 interface ICardProduct {
     id: number;
@@ -17,6 +18,9 @@ interface ICardProduct {
 }
 
 export const FavoritePage = () => {
+
+    const { allCartProducts } = useGetAllCartProducts();
+
     const location = useLocation();
     const dispatch = useDispatch<AppDispatch>();
     const { favoriteProducts, loading } = useSelector((state: RootState) => state.favoriteProductsSlice)
@@ -58,6 +62,7 @@ export const FavoritePage = () => {
                                                 {...prod}
                                                 localError={localError[prod.id]}
                                                 isFavorite={favoriteProducts.some((product) => product.id === prod.id)}
+                                                isAddToCart={allCartProducts && allCartProducts.some((product) => product.id === prod.id)}
                                                 toggleFavorite={() => toggleFavorite(prod)}
                                                 location={location}
                                             />

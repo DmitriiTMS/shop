@@ -82,6 +82,38 @@
       "rating": 5
     }
   ],
-  "favorites": [],
-  "cart": []
+  "favorites": [
+    {
+      "id": 2,
+      "title": "Хлеб 'Бересневский' с тмином",
+      "category": "хлеб",
+      "brand": "Домочай",
+      "price": 30,
+      "imgUrl": "https://domochay.by/wp-content/uploads/2022/09/hleb-berestnevskij-s-tminom-min.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Хлеб 'Дивный'",
+      "category": "хлеб",
+      "brand": "Домочай",
+      "price": 50,
+      "imgUrl": "https://domochay.by/wp-content/uploads/2022/09/hleb-divnyj-min.jpg"
+    }
+  ],
+  "cart": [
+    {
+      "id": 2,
+      "title": "Хлеб 'Бересневский' с тмином",
+      "brand": "Домочай",
+      "price": 30,
+      "category": "хлеб"
+    },
+    {
+      "id": 3,
+      "title": "Хлеб 'Дивный'",
+      "brand": "Домочай",
+      "price": 50,
+      "category": "хлеб"
+    }
+  ]
 }

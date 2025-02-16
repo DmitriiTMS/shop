@@ -10,6 +10,7 @@ import { getAllProducts } from '../../store/slices/products/productSlice';
 
 import Skeleton from 'react-loading-skeleton'
 import styles from './main-page.module.css'
+import { useGetAllCartProducts } from '../../query/cart/useGetAllCartProducts';
 
 interface ICardProduct {
     id: number;
@@ -21,6 +22,8 @@ interface ICardProduct {
 }
 
 export const MainPage = () => {
+
+    const { allCartProducts } = useGetAllCartProducts();
 
     const dispatch = useDispatch<AppDispatch>();
     const { products, loading, error } = useSelector((state: RootState) => state.productsSlice)
@@ -94,6 +97,7 @@ export const MainPage = () => {
                                             {...prod}
                                             localError={localError[prod.id]}
                                             isFavorite={favoriteProducts.some((product) => product.id === prod.id)}
+                                            isAddToCart={allCartProducts && allCartProducts.some((product) => product.id === prod.id)}
                                             toggleFavorite={() => toggleFavorite(prod)}
                                         />
                                     )

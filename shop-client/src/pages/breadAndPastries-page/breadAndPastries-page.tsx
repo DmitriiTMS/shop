@@ -9,6 +9,7 @@ import { LoaderProducts } from '../../components/LoaderProducts/LoaderProducts';
 import { addFavoriteProducts, deleteFavoriteProducts, getAllFavoriteProducts } from '../../store/slices/favoriteProducts/favoriteProductsSlice';
 
 import styles from "./breadAndPastriesPages.module.css";
+import { useGetAllCartProducts } from '../../query/cart/useGetAllCartProducts';
 
 interface ICardProduct {
     id: number;
@@ -20,6 +21,7 @@ interface ICardProduct {
 }
 
 export const BreadAndPastriesPages = () => {
+    const { allCartProducts } = useGetAllCartProducts();
 
     const dispatch = useDispatch<AppDispatch>();
     const { products, loading, error } = useSelector((state: RootState) => state.productsSlice);
@@ -68,6 +70,7 @@ export const BreadAndPastriesPages = () => {
                                                 {...prod}
                                                 localError={localError[prod.id]}
                                                 isFavorite={favoriteProducts.some((product) => product.id === prod.id)}
+                                                isAddToCart={allCartProducts && allCartProducts.some((product) => product.id === prod.id)}
                                                 toggleFavorite={() => toggleFavorite(prod)}
                                             />
                                         )

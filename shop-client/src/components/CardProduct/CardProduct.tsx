@@ -1,45 +1,58 @@
 import React, { useState } from "react";
 import styles from "./CardProduct.module.css";
 import { Location } from "react-router-dom";
+import { useAddProductCart } from "../../query/cart/useAddProductCart";
+import { useDeleteProductCart } from "../../query/cart/useDeleteProductCart";
 
 
 interface ICardProduct {
   id: number;
-  title: string;
-  category: string;
   brand: string;
+  category: string;
+  title: string;
   price: number;
   imgUrl: string;
-  isFavorite: boolean;
-  localError: string | null;
+  isFavorite?: boolean;
+  localError?: string | null;
   toggleFavorite: () => void;
-  location?: Location
+  location?: Location,
+  isAddToCart?: boolean
 }
 
 export const CardProduct: React.FC<ICardProduct> = ({
-  title,
-  category,
-  brand,
-  price,
-  imgUrl,
+  id, brand, category, title, price, imgUrl,
   isFavorite,
   localError,
   toggleFavorite,
-  location
+  location,
+  isAddToCart
 }) => {
+
+  const product = { id, title, brand, price, category }
+  const { mutate, isError, isPending } = useAddProductCart();
+  const { mutateDelete, isErrorDelete, isPendingDelete } = useDeleteProductCart();
+
+  const toggleCartProduct = () => {
+    if(isAddToCart) {
+      mutateDelete(id)
+    } else {
+      mutate(product)
+    }
+  }
+
   const safeLocation = location || { pathname: "" };
   const [removing, setRemoving] = useState(false);
 
   const handleRemove = () => {
     setRemoving(true);
     setTimeout(() => {
-        toggleFavorite(); // Удаляем после анимации
+      toggleFavorite(); // Удаляем после анимации
     }, 300);
-};
+  };
 
   return (
     <div className={`${styles.cardProduct} ${removing ? styles.removing : ""}`}>
-      {localError && <span>{isFavorite ? 'Не удалён из избранного (ошибка)' :'Не добавлен в избранное (ошибка)'}</span>}
+      {localError && <span>{isFavorite ? 'Не удалён из избранного (ошибка)' : 'Не добавлен в избранное (ошибка)'}</span>}
       <img className={styles.prodImg} src={imgUrl} alt={title} />
       <div>
         <svg
@@ -70,6 +83,15 @@ export const CardProduct: React.FC<ICardProduct> = ({
         <p>Категория: {category}</p>
         <p>Бренд: {brand}</p>
         <p>Цена: {price} бел.руб</p>
+        <button
+          onClick={toggleCartProduct}
+          className={`${styles.prodBtn} ${isAddToCart ? styles.addCart : ""}`}
+        >{isAddToCart ? 'Удалить из корзины' : "Добавить в корзину"}
+        </button>
+        {isPending && <span>Loading... добавление</span>}
+        {isError && <span>Ошибка при добавлении товара</span>}
+        {isPendingDelete && <span>Loading... удаление</span>}
+        {isErrorDelete && <span>Ошибка при удалении товара</span>}
       </div>
     </div>
   );
